@@ -1,0 +1,27 @@
+{
+  "name": "uptask",
+  "version": "1.0.0",
+  "description": "project made with node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KFengF/uptask.git"
+  },
+  "author": "Kevin Feng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KFengF/uptask/issues"
+  },
+  "homepage": "https://github.com/KFengF/uptask#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.2"
+  }
+}
