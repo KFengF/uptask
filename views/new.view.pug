@@ -1,0 +1,18 @@
+extends layout.view.pug
+
+block content
+  .contenido-principal
+    h1 New Project
+
+    if errors
+      each error in errors
+        .alerta= errortext
+
+    form(action="/new" method='post' class='agregar-proyecto')
+      .campo
+        label(for="name") Project Name:
+        input(
+          type="text" name="name" placeholder="Enter name" id="name"
+        )
+      .campo.enviar
+        input(type="submit" value='agregar' class='boton')
