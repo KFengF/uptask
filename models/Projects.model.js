@@ -1,9 +1,10 @@
 const Sequelize = require("sequelize");
-const db = require("../config/db.config");
 const slug = require("slug");
+const shortid = require("shortid");
+const dbPromise = require("../config/db.config");
 
 //definiendo tabla
-const Projects = db.then(db =>
+const ProjectsPromise = dbPromise.then(db =>
   db.define(
     "projects",
     {
@@ -18,7 +19,8 @@ const Projects = db.then(db =>
     {
       hooks: {
         beforeCreate(project) {
-          const url = slug(project.name).toLowerCase();
+          const url =
+            slug(project.name).toLowerCase() + "-" + shortid.generate();
           project.url = url;
         }
       }
@@ -26,4 +28,4 @@ const Projects = db.then(db =>
   )
 );
 
-module.exports = Projects;
+module.exports = ProjectsPromise;

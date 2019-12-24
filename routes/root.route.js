@@ -1,22 +1,24 @@
 const express = require("express");
-const { body } = require("express-validator/check");
+const { check } = require("express-validator");
 //esto es un mini router para ser usado como middleware
 const projectsController = require("../controllers/projects.controller");
 
 const router = express.Router();
 
 module.exports = () => {
-  router.get("/", projectsController.home);
+  router.get("/", projectsController.root);
   router.get("/new", projectsController.new);
   router.post(
     "/new",
-    body("name")
+    check("name")
       .not()
       .isEmpty()
       .trim()
       .escape(),
     projectsController.newPost
   );
+  router.get("/projects/:url", projectsController.project);
+  router.get("/projects/:url/edit", projectsController.projectEdit);
 
   return router;
 };

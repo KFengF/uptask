@@ -1,12 +1,13 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const routes = require("./routes/root.route");
-const db = require("./config/db.config");
 require("dotenv").config();
+const routes = require("./routes/root.route");
+const dbPromise = require("./config/db.config");
 require("./models/Projects.model");
+const utils = require("./utils");
 
-db.then(db => db.sync());
+dbPromise.then(db => db.sync());
 
 var app = express();
 
@@ -21,6 +22,11 @@ app.set("views", path.join(__dirname, "./views"));
 // path.join une dos rutas, __dirname es una palabra reservada de node
 // que retorna el path de la carpeta actual, el segundo arg es una
 // ruta relativa
+
+app.use((req, res, next) => {
+  res.locals.vardump = utils.vardump;
+  next();
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
