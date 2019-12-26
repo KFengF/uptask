@@ -21,6 +21,8 @@ const ProjectsPromise = dbPromise.then(db =>
         beforeCreate(project) {
           const url =
             slug(project.name).toLowerCase() + "-" + shortid.generate();
+          //slug pone los guiones en vez de espacio
+
           project.url = url;
         }
       }

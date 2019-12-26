@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-const routes = require("./routes/root.route");
+const router = require("./routes/router");
 const dbPromise = require("./config/db.config");
 require("./models/Projects.model");
 const utils = require("./utils");
@@ -24,13 +24,13 @@ app.set("views", path.join(__dirname, "./views"));
 // ruta relativa
 
 app.use((req, res, next) => {
-  res.locals.vardump = utils.vardump;
+  res.locals.vardump = utils.vardump; //poniendo variables en el view
   next();
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/", routes());
+app.use("/", router());
 // use significa que es un middleware y que se llama la funcion en
 // cada http request
 

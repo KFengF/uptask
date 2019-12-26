@@ -1,0 +1,12 @@
+extends layout.view.pug
+
+include mixins/project-form.mixin.pug
+
+block content
+  .contenido-principal
+    h1 #{pageTitle}
+
+    if errors
+      each error in errors
+        .alerta= errortext
+    +project-form(project)

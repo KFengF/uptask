@@ -19,6 +19,16 @@ module.exports = () => {
   );
   router.get("/projects/:url", projectsController.project);
   router.get("/projects/:url/edit", projectsController.projectEdit);
+  router.post(
+    "/new/:id",
+    check("name")
+      .not()
+      .isEmpty()
+      .trim()
+      .escape(),
+    projectsController.newUpdate
+  );
+  router.delete("/projects/:url", projectsController.deleteProject);
 
   return router;
 };

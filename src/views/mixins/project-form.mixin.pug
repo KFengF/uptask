@@ -1,0 +1,22 @@
+mixin project-form(project={})
+  form(
+    action=`/new/${project.id || ''}`
+    method='POST'
+    class='agregar-proyecto'
+  )
+
+    .campo
+      label(for="name") Project Name:
+      input(
+        value=project.name
+        type="text" name="name"
+        placeholder="Enter name"
+        id="name"
+      )
+
+    .campo.enviar
+      input(
+        type="submit"
+        value=`${project.name ? 'Save' : 'Add'}`
+        class='boton'
+      )

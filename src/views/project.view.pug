@@ -1,0 +1,14 @@
+extends layout.view.pug
+
+block content
+  .contenido-principal
+    h1 #{pageTitle} - #{project.name}
+
+    .contenedor-acciones
+      a(href=`/projects/${project.url}/edit` class='boton') Edit Project
+      button(
+        type='button'
+        class='boton eliminar'
+        id='delete-project'
+        data-project-url=project.url
+      ) Remove Project
