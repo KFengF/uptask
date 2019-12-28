@@ -20,13 +20,19 @@ if (deleteBtn)
       if (result.value) {
         const url = `${location.origin}/projects/${projectUrl}`;
 
-        axios.delete(url).then(() => {
-          Swal.fire("Deleted", "Your project has been deleted", "success");
-
-          setTimeout(() => {
-            window.location.href = "/";
-          }, 3000);
-        });
+        axios
+          .delete(url)
+          .then(() =>
+            Swal.fire("Deleted", "Your project has been deleted", "success")
+          )
+          .then(() => (window.location.href = "/"))
+          .catch(() => {
+            Swal.fire({
+              type: "error",
+              title: "There's something wrong...",
+              text: "Project couldn't be deleted"
+            });
+          });
       }
     });
   });

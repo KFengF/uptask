@@ -1,4 +1,5 @@
 const ProjectsPromise = require("../models/Projects.model");
+const TasksPromise = require("../models/Tasks.model");
 
 exports.root = async (req, res) => {
   const Projects = await ProjectsPromise;
@@ -17,7 +18,7 @@ exports.new = async (req, res) => {
   });
 };
 
-exports.newPost = async (req, res) => {
+exports.postNew = async (req, res) => {
   const Projects = await ProjectsPromise;
   const projects = await Projects.findAll();
   const { name } = req.body;
@@ -52,12 +53,15 @@ exports.project = async (req, res, next) => {
     projectsPromise,
     projectPromise
   ]);
+  const Tasks = await TasksPromise;
+  const tasks = await Tasks.findAll({ where: { projectId: project.id } });
 
   if (project) {
     res.render("project.view.pug", {
       pageTitle: "Project tasks",
       project,
-      projects
+      projects,
+      tasks
     });
   } else return next();
 };
@@ -80,7 +84,7 @@ exports.projectEdit = async (req, res) => {
   });
 };
 
-exports.newUpdate = async (req, res) => {
+exports.updateNew = async (req, res) => {
   const Projects = await ProjectsPromise;
   const projects = await Projects.findAll();
   const { name } = req.body;
@@ -105,11 +109,12 @@ exports.newUpdate = async (req, res) => {
   }
 };
 
-exports.deleteProject = async (req, res) => {
+exports.deleteProject = async (req, res, next) => {
   const { url } = req.params;
   const Projects = await ProjectsPromise;
 
-  await Projects.destroy({ where: { url } });
+  const result = await Projects.destroy({ where: { url } });
 
-  res.status(204).send();
+  if (result) res.status(204).send();
+  else return next();
 };

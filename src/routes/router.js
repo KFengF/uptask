@@ -2,6 +2,7 @@ const express = require("express");
 const { check } = require("express-validator");
 //esto es un mini router para ser usado como middleware
 const projectsController = require("../controllers/projects.controller");
+const tasksController = require("../controllers/tasks.controller");
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ module.exports = () => {
       .isEmpty()
       .trim()
       .escape(),
-    projectsController.newPost
+    projectsController.postNew
   );
   router.get("/projects/:url", projectsController.project);
   router.get("/projects/:url/edit", projectsController.projectEdit);
@@ -26,9 +27,10 @@ module.exports = () => {
       .isEmpty()
       .trim()
       .escape(),
-    projectsController.newUpdate
+    projectsController.updateNew
   );
   router.delete("/projects/:url", projectsController.deleteProject);
+  router.post("/tasks/:url", tasksController.newTask);
 
   return router;
 };
