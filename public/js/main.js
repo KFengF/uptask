@@ -1,1 +1,2 @@
-import deleteProjectFront from "./modules/delete-project.front";
+import deleteProject from "./modules/delete-project.front";
+import taskCheck from "./modules/task.front";

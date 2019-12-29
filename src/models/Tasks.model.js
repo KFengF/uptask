@@ -10,7 +10,7 @@ const TasksPromise = dbPromise.then(async db => {
       autoIncrement: true
     },
     task: Sequelize.STRING(100),
-    state: Sequelize.INTEGER(1)
+    state: Sequelize.BOOLEAN
   });
 
   Tasks.belongsTo(await ProjectsPromise);

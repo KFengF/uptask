@@ -1,29 +1,31 @@
 import Swal from "sweetalert2";
 import axios from "axios";
 
-const deleteBtn = document.getElementById("delete-project");
+const deleteProject = document.getElementById("delete-project");
 
-if (deleteBtn)
-  deleteBtn.addEventListener("click", event => {
+if (deleteProject)
+  deleteProject.addEventListener("click", event => {
     const projectUrl = event.target.dataset.projectUrl;
 
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
-      type: "warning",
+      icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "rgb(196, 0, 0)",
       cancelButtonColor: "rgb(219, 184, 29)",
       confirmButtonText: "Delete it",
       cancelButtonText: "Cancel"
     }).then(result => {
-      if (result.value) {
-        const url = `${location.origin}/projects/${projectUrl}`;
-
+      if (result.value)
         axios
-          .delete(url)
+          .delete(`${location.origin}/projects/${projectUrl}`)
           .then(() =>
-            Swal.fire("Deleted", "Your project has been deleted", "success")
+            Swal.fire(
+              "Deleted",
+              "Your project has been deleted",
+              "success"
+            )
           )
           .then(() => (window.location.href = "/"))
           .catch(() => {
@@ -33,8 +35,7 @@ if (deleteBtn)
               text: "Project couldn't be deleted"
             });
           });
-      }
     });
   });
 
-export default deleteBtn;
+export default deleteProject;

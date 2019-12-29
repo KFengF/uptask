@@ -30,7 +30,16 @@ module.exports = () => {
     projectsController.updateNew
   );
   router.delete("/projects/:url", projectsController.deleteProject);
-  router.post("/tasks/:url", tasksController.newTask);
+  router.post(
+    "/projects/:url",
+    check("task")
+      .not()
+      .isEmpty()
+      .trim()
+      .escape(),
+    tasksController.postTask
+  );
+  router.patch("/tasks/:id", tasksController.patchState);
 
   return router;
 };

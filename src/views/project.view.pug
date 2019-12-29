@@ -4,8 +4,13 @@ block content
   .contenido-principal
     h1 #{pageTitle} - #{project.name}
 
+    if errors
+      .alerta.error Error: #{errors[0].msg}
+
     form(
-      action=`/tasks/${project.url}` method='POST' class='agregar-tarea'
+      action=`/projects/${project.url}`
+      method='POST'
+      class='agregar-tarea'
     )
       .campo
         label(for='task') Task:
@@ -22,7 +27,7 @@ block content
       ul
         if tasks.length
           each task in tasks
-            li.tarea
+            li(data-task-id=task.id class='tarea')
               p= task.task
               .acciones
                 if task.state

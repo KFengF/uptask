@@ -299,10 +299,6 @@ body.index {
   border: 1px solid red;
 }
 
-.error p {
-  color: red !important;
-}
-
 .correcto {
   color: green;
   background-color: rgb(201, 245, 201);

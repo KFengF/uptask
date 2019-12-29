@@ -9,9 +9,9 @@ const utils = require("./utils");
 
 dbPromise.then(db => db.sync());
 
-var app = express();
-
-app.use(express.static("public"));
+const app = express();
+console.log(__dirname);
+app.use(express.static(path.join(__dirname, "../public")));
 // para indicar de donde se sacara los archivos estaticos
 
 app.set("view engine", "pug");
@@ -28,12 +28,27 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use("/", router());
 // use significa que es un middleware y que se llama la funcion en
 // cada http request
 
-app.listen(process.env.PORT, function() {
-  console.log("app running in port " + process.env.PORT);
+// Handle 404
+app.use((req, res) => {
+  res.status(400);
+  res.render("not-found.view.pug", { title: "404: File Not Found" });
 });
+
+// Handle 500
+app.use((error, req, res) => {
+  res.status(500);
+  res.render("server-error.view.pug", {
+    title: "500: Internal Server Error",
+    error: error
+  });
+});
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.listen(process.env.PORT, () =>
+  console.log("app running in port " + process.env.PORT)
+);
