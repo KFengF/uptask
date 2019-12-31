@@ -50,18 +50,32 @@ exports.postTask = async (req, res) => {
 
 exports.patchState = async (req, res) => {
   const { id } = req.params;
-  const Tasks = await TasksPromise;
-  const task = await Tasks.findOne({ where: { id } });
+  const task = utils.TaskFindOne({ id });
 
   task.state = !task.state;
 
   try {
     await task.save();
 
-    res.send("Updated task state");
+    res.status(201).send();
   } catch (error) {
     console.error(error);
 
-    res.status(400).send("Couldn't update task state");
+    res.status(400).send();
+  }
+};
+
+exports.deleteTask = async (req, res) => {
+  const { id } = req.params;
+  const Tasks = await TasksPromise;
+
+  try {
+    await Tasks.destroy({ where: { id } });
+
+    res.status(204).send();
+  } catch (error) {
+    console.error(error);
+
+    res.status(400).send();
   }
 };

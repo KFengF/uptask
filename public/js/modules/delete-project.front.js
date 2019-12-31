@@ -28,13 +28,13 @@ if (deleteProject)
             )
           )
           .then(() => (window.location.href = "/"))
-          .catch(() => {
+          .catch(() =>
             Swal.fire({
-              type: "error",
+              icon: "error",
               title: "There's something wrong...",
               text: "Project couldn't be deleted"
-            });
-          });
+            })
+          );
     });
   });
 

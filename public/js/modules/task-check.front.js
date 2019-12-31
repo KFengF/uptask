@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import axios from "axios";
 
 const taskCheck = document.querySelector(".fa-check-circle");
@@ -8,10 +9,14 @@ if (taskCheck) {
     const taskId = icon.parentElement.parentElement.dataset.taskId;
     axios
       .patch(`${window.location.origin}/tasks/${taskId}`)
-      .then(
-        res => res.status === 200 && icon.classList.toggle("completo")
-      )
-      .catch(console.error);
+      .then(() => icon.classList.toggle("completo"))
+      .catch(() =>
+        Swal.fire({
+          icon: "error",
+          title: "There's something wrong...",
+          text: "Task couldn't be checked or unchecked"
+        })
+      );
   });
 }
 

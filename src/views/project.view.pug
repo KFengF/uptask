@@ -7,17 +7,14 @@ block content
     if errors
       .alerta.error Error: #{errors[0].msg}
 
-    form(
-      action=`/projects/${project.url}`
-      method='POST'
-      class='agregar-tarea'
-    )
+    form(action=`/projects/${project.url}` method='POST' class='agregar-tarea')
       .campo
         label(for='task') Task:
         input(
           type='text'
           name='task'
           placeholder='Task name'
+          id='task'
           class='nombre-tarea'
         )
       .campo.enviar

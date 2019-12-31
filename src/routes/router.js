@@ -40,6 +40,7 @@ module.exports = () => {
     tasksController.postTask
   );
   router.patch("/tasks/:id", tasksController.patchState);
+  router.delete("/tasks/:id", tasksController.deleteTask);
 
   return router;
 };

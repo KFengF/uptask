@@ -20,3 +20,6 @@ exports.ProjectsFindAllAndOne = async where => {
 
 exports.TasksFindAll = where =>
   TasksPromise.then(Tasks => Tasks.findAll({ where }));
+
+exports.TaskFindOne = where =>
+  TasksPromise.then(Tasks => Tasks.findOne({ where }));

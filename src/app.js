@@ -28,6 +28,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use("/", router());
 // use significa que es un middleware y que se llama la funcion en
 // cada http request
@@ -46,8 +48,6 @@ app.use((error, req, res) => {
     error: error
   });
 });
-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(process.env.PORT, () =>
   console.log("app running in port " + process.env.PORT)
