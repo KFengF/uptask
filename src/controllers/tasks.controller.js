@@ -50,7 +50,7 @@ exports.postTask = async (req, res) => {
 
 exports.patchState = async (req, res) => {
   const { id } = req.params;
-  const task = utils.TaskFindOne({ id });
+  const task = await utils.TaskFindOne({ id });
 
   task.state = !task.state;
 

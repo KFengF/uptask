@@ -28,12 +28,26 @@ block content
               p= task.task
               .acciones
                 if task.state
-                  i.far.fa-check-circle.completo
+                  i(
+                    onclick='customFunctions.handleTaskCheck(event)'
+                    class='far fa-check-circle completo'
+                  )
                 else
-                  i.far.fa-check-circle
-                i.fas.fa-trash
+                  i(
+                    onclick='customFunctions.handleTaskCheck(event)'
+                    class='far fa-check-circle'
+                  )
+                i(
+                  onclick='customFunctions.handleDeleteTask(event)'
+                  class='fas fa-trash'
+                )
         else
           p There's no task in this project
+
+    .avance
+      h2 Project Progress
+      .barra-avance
+        .porcentaje
 
     .contenedor-acciones
       a(href=`/projects/${project.url}/edit` class='boton') Edit Project

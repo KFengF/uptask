@@ -27,7 +27,7 @@ if (deleteProject)
               "success"
             )
           )
-          .then(() => (window.location.href = "/"))
+          .then(() => (location.href = "/"))
           .catch(() =>
             Swal.fire({
               icon: "error",
@@ -38,4 +38,23 @@ if (deleteProject)
     });
   });
 
-export default deleteProject;
+export const putProjectProcess = () => {
+  const tasks = document.querySelectorAll("li.tarea");
+
+  if (tasks.length) {
+    const completedTasks = document.querySelectorAll("i.completo");
+    const process = Math.round(
+      (completedTasks.length / tasks.length) * 100
+    );
+    const processBar = document.querySelector(".porcentaje");
+
+    processBar.style.width = process + "%";
+
+    process === 100 &&
+      Swal.fire(
+        "Project completed",
+        "You have completed every task available",
+        "success"
+      );
+  }
+};

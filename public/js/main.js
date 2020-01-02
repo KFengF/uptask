@@ -1,3 +1,14 @@
-import deleteProject from "./modules/delete-project.front";
-import taskCheck from "./modules/task-check.front";
-import deleteTask from "./modules/delete-task.front";
+import { putProjectProcess } from "./modules/project.front";
+import {
+  handleTaskCheck,
+  handleDeleteTask
+} from "./modules/tasks.front";
+
+window.customFunctions = {
+  handleTaskCheck,
+  handleDeleteTask
+};
+
+document.addEventListener("DOMContentLoaded", () =>
+  putProjectProcess()
+);
