@@ -1,7 +1,8 @@
 node_modules
-public/dist
 package-lock.json
 yarn.lock
 .env
 .DS_Store
 notes.txt
+public/*.js
+public/*.css

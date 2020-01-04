@@ -1,6 +1,6 @@
 const Sequelize = require("Sequelize");
 const dbPromise = require("../config/db.config");
-const ProjectsPromise = require("./Projects.model");
+const ProjectsPromise = require("./projects.model");
 
 const TasksPromise = dbPromise.then(async db => {
   const Tasks = db.define("tasks", {

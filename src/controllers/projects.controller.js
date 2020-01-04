@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
 const utils = require("./controllers.utils");
-const ProjectsPromise = require("../models/Projects.model");
+const ProjectsPromise = require("../models/projects.model");
 // const TasksPromise = require("../models/Tasks.model");
 
 exports.root = async (req, res, next) => {

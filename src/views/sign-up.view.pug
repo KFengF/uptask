@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    include partials/head.partial.pug
+  body.login
+    .contenedor-formulario
+      .contenedor-imagen
+        img(src="/assets/logo-white.png", alt="light bulb")
+
+      h1 Create your account in Uptask
+
+      form(method='POST' action='/sign-up' class='caja caja-login')
+        .campo
+          label(for='email') Email:
+          input(
+            type='email'
+            name='email'
+            id='email'
+            placeholder='Enter your email here'
+          )
+        .campo
+          label(for='password') Password:
+          input(
+            type='password'
+            name='password'
+            id='password'
+            placeholder='Enter your password here'
+          )
+        .campo
+          label(for='confirm-password') Confirm Password:
+          input(
+            type='password'
+            name='confirm-password'
+            id='confirm-password'
+            placeholder='Confirm your password'
+          )
+        .flex
+          a(href='/sign-in' class='anchor') Go to Sign In
+          input(type='submit' value='Sign Up' class='boton')
+
+    script(src="main.bundle.js")
+
+    

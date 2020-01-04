@@ -1,7 +1,7 @@
 const { validationResult } = require("express-validator");
 const utils = require("./controllers.utils");
 // const ProjectsPromise = require("../models/Projects.model");
-const TasksPromise = require("../models/Tasks.model");
+const TasksPromise = require("../models/tasks.model");
 
 exports.postTask = async (req, res) => {
   try {

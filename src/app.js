@@ -4,7 +4,9 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const router = require("./routes/router");
 const dbPromise = require("./config/db.config");
-require("./models/Projects.model");
+require("./models/projects.model");
+require("./models/tasks.model");
+require("./models/users.model");
 const utils = require("./utils");
 
 dbPromise.then(db => db.sync());
