@@ -300,7 +300,6 @@ body.index {
   font-weight: 900;
   max-width: 300px;
   margin: 0 auto 1rem auto;
-  text-transform: uppercase;
 }
 
 .error {

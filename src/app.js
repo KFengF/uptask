@@ -2,17 +2,18 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 require("dotenv").config();
+const flash = require("connect-flash");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+
 const router = require("./routes/router");
 const dbPromise = require("./config/db.config");
-require("./models/projects.model");
-require("./models/tasks.model");
-require("./models/users.model");
 const utils = require("./utils");
 
 dbPromise.then(db => db.sync());
 
 const app = express();
-console.log(__dirname);
+
 app.use(express.static(path.join(__dirname, "../public")));
 // para indicar de donde se sacara los archivos estaticos
 
@@ -25,12 +26,26 @@ app.set("views", path.join(__dirname, "./views"));
 // que retorna el path de la carpeta actual, el segundo arg es una
 // ruta relativa
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(flash());
+//flash es para mostrar mensajes
+
+app.use(cookieParser());
+
+app.use(
+  session({
+    secret: "supersecret",
+    resave: false,
+    saveUninitialized: false
+  })
+);
+
 app.use((req, res, next) => {
   res.locals.vardump = utils.vardump; //poniendo variables en el view
+  res.locals.messages = req.flash();
   next();
 });
-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", router());
 // use significa que es un middleware y que se llama la funcion en

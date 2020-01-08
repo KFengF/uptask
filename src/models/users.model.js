@@ -11,11 +11,28 @@ const UsersPromise = dbPromise.then(async db => {
     },
     email: {
       type: Sequelize.STRING(100),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isEmail: {
+          msg: "Add a valid email"
+        },
+        notEmpty: {
+          msg: "The email can't be empty"
+        }
+      },
+      unique: {
+        args: true,
+        msg: "Email already registered"
+      }
     },
     password: {
       type: Sequelize.STRING(60),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "The password can't be empty"
+        }
+      }
     }
   });
 
