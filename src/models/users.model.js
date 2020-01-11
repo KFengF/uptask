@@ -1,4 +1,6 @@
 const Sequelize = require("sequelize");
+const bcrypt = require("bcryptjs");
+
 const dbPromise = require("../config/db.config");
 const ProjectsPromise = require("./projects.model");
 
@@ -37,6 +39,11 @@ const UsersPromise = dbPromise.then(async db => {
   });
 
   Users.hasMany(await ProjectsPromise);
+
+  Users.prototype.comparePasswords = async function(password) {
+    //tiene que ser function para que this tome al objeto invocador
+    return await bcrypt.compare(password, this.password);
+  };
 
   return Users;
 });

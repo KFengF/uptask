@@ -5,6 +5,7 @@ import { putProjectProcess } from "./project.front";
 export const handleTaskCheck = event => {
   const icon = event.target;
   const taskId = icon.parentElement.parentElement.dataset.taskId;
+
   axios
     .patch(`${location.origin}/tasks/${taskId}`)
     .then(() => {

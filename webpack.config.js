@@ -7,9 +7,9 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
   entry: {
-    main: "./src/js-front/main.js",
-    styles: "./src/css/styles.css",
-    normalize: "./src/css/normalize.css"
+    main: "./src/frontend/js/main.js",
+    styles: "./src/frontend/css/styles.css",
+    normalize: "./src/frontend/css/normalize.css"
   },
   output: {
     filename: "[name].bundle.js",
@@ -51,5 +51,6 @@ module.exports = {
       filename: "[name].mini.css"
     }),
     new FixStyleOnlyEntries()
+    //Para poder meter mas de un css
   ]
 };

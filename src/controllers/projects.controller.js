@@ -130,10 +130,10 @@ exports.updateNew = async (req, res) => {
 };
 
 exports.deleteProject = async (req, res) => {
-  const { url } = req.params;
-  const Projects = await ProjectsPromise;
-
   try {
+    const { url } = req.params;
+    const Projects = await ProjectsPromise;
+
     await Projects.destroy({ where: { url } });
 
     res.status(204).send();

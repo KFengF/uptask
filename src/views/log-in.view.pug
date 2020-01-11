@@ -7,7 +7,7 @@ html(lang="en")
       .contenedor-imagen
         img(src="/public/assets/logo-white.png", alt="light bulb")
 
-      h1 Create your account in Uptask
+      h1 Log in Uptask
 
       if locals.messages
         div
@@ -15,7 +15,7 @@ html(lang="en")
             each error in messages[errorType]
               p(class=`alerta ${errorType}`)= error
 
-      form(method='POST' action='/sign-up' class='caja caja-login')
+      form(method='POST' action='/log-in' class='caja caja-login')
         .campo
           label(for='email') Email:
           input(
@@ -24,7 +24,6 @@ html(lang="en")
             id='email'
             placeholder='Enter your email here'
             require
-            value= email
           )
         .campo
           label(for='password') Password:
@@ -34,19 +33,7 @@ html(lang="en")
             id='password'
             placeholder='Enter your password here'
             require
-            value= password
-          )
-        .campo
-          label(for='confirm-password') Confirm Password:
-          input(
-            type='password'
-            name='confirmPassword'
-            id='confirm-password'
-            placeholder='Confirm your password'
-            require
-            value= password
           )
         .flex
-          a(href='/log-in' class='anchor') Go to Log in
-          input(type='submit' value='Sign Up' class='boton')
-    
+          a(href='/sign-up' class='anchor') Don't have an account yet?
+          input(type='submit' value='Log in' class='boton')

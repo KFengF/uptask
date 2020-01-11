@@ -27,7 +27,7 @@ exports.postSignUp = (req, res) => {
 
       await Users.create({ email, password: hash });
 
-      res.redirect("/sign-in");
+      res.redirect("/log-in");
     } catch (err) {
       console.log(err);
 
@@ -46,3 +46,6 @@ exports.postSignUp = (req, res) => {
     }
   });
 };
+
+exports.logIn = (req, res) =>
+  res.render("log-in.view.pug", { pageTitle: "Log in" });

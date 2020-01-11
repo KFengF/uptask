@@ -49,12 +49,12 @@ exports.postTask = async (req, res) => {
 };
 
 exports.patchState = async (req, res) => {
-  const { id } = req.params;
-  const task = await utils.TaskFindOne({ id });
-
-  task.state = !task.state;
-
   try {
+    const { id } = req.params;
+    const task = await utils.TaskFindOne({ id });
+
+    task.state = !task.state;
+
     await task.save();
 
     res.status(201).send();

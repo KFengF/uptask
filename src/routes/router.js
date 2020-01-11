@@ -3,12 +3,14 @@ const { check } = require("express-validator");
 const projectsController = require("../controllers/projects.controller");
 const tasksController = require("../controllers/tasks.controller");
 const usersController = require("../controllers/users.controller");
+const authController = require("../controllers/auth.controller");
 
 const router = express.Router();
 //esto es un mini router para ser usado como middleware
 
 module.exports = () => {
   router.get("/", projectsController.root);
+
   router.get("/new", projectsController.new);
   router.post(
     "/new",
@@ -19,8 +21,7 @@ module.exports = () => {
       .escape(),
     projectsController.postNew
   );
-  router.get("/projects/:url", projectsController.project);
-  router.get("/projects/:url/edit", projectsController.projectEdit);
+
   router.post(
     "/new/:id",
     check("name")
@@ -30,6 +31,9 @@ module.exports = () => {
       .escape(),
     projectsController.updateNew
   );
+
+  router.get("/projects/:url", projectsController.project);
+  router.get("/projects/:url/edit", projectsController.projectEdit);
   router.delete("/projects/:url", projectsController.deleteProject);
   router.post(
     "/projects/:url",
@@ -40,8 +44,10 @@ module.exports = () => {
       .escape(),
     tasksController.postTask
   );
+
   router.patch("/tasks/:id", tasksController.patchState);
   router.delete("/tasks/:id", tasksController.deleteTask);
+
   router.get("/sign-up", usersController.signUp);
   router.post(
     "/sign-up",
@@ -52,6 +58,11 @@ module.exports = () => {
       .trim(),
     usersController.postSignUp
   );
+
+  router.get("/log-in", usersController.logIn);
+  router.post("/log-in", authController.authenticateUser);
+
+  router.get("/log-out", authController.logOut);
 
   return router;
 };

@@ -8,13 +8,26 @@ const session = require("express-session");
 
 const router = require("./routes/router");
 const dbPromise = require("./config/db.config");
+const passport = require("./config/passport.config");
 const utils = require("./utils");
+const authController = require("./controllers/auth.controller");
 
 dbPromise.then(db => db.sync());
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "../public")));
+app.use("/public", express.static(path.join(__dirname, "../public")));
+// para indicar de donde se sacara los archivos estaticos
+
+app.use(
+  "/static",
+  express.static(
+    path.join(
+      __dirname,
+      "../node_modules/@fortawesome/fontawesome-free/"
+    )
+  )
+);
 // para indicar de donde se sacara los archivos estaticos
 
 app.set("view engine", "pug");
@@ -41,11 +54,17 @@ app.use(
   })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use((req, res, next) => {
   res.locals.vardump = utils.vardump; //poniendo variables en el view
   res.locals.messages = req.flash();
   next();
 });
+
+app.use(authController.isAuthenticated);
+//middleware para que todos los req se verifique si esta autenticado
 
 app.use("/", router());
 // use significa que es un middleware y que se llama la funcion en

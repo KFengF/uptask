@@ -5,9 +5,13 @@ html(lang="en")
   body
     header.barra
       .logotype
-        img(src="/assets/logo-white.png", alt="light bulb" style="height:100%;width:auto")
+        img(
+          src="/public/assets/logo-white.png" 
+          alt="light bulb" 
+          style="height:100%;width:auto"
+        )
         h1 UpTask - Projects Manager
-      a(href="#") Log Out
+      a(href="/log-out") Log Out
 
     main.contenedor
       aside.contenedor-proyectos
@@ -24,5 +28,4 @@ html(lang="en")
             
       block content
 
-    script(src="/main.bundle.js")
-    script(src='https://kit.fontawesome.com/55461b42a6.js' crossorigin='anonymous')
+    script(src="/public/main.bundle.js")
