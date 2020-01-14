@@ -4,6 +4,7 @@ html(lang="en")
     include partials/head.partial.pug
   body
     header.barra
+      button#stack.for-mobile &#9776;
       .logotype
         img(
           src="/public/assets/logo-white.png" 
@@ -11,16 +12,17 @@ html(lang="en")
           style="height:100%;width:auto"
         )
         h1 UpTask - Projects Manager
-      a(href="/log-out") Log Out
+      a(href="/log-out" class='for-desktop log-out') Log Out
 
     main.contenedor
-      aside.contenedor-proyectos
+      aside.contenedor-proyectos.for-desktop
         .panel.crear-proyecto
           a(href="/new" class='boton') New Project
             span +
+        a(href="/log-out" class='for-mobile log-out') Log Out
         .panel.lista-proyectos
           h2 Projects
-          ul#proyectos.proyectos
+          ul.proyectos
             if(projects.length)
               each project in projects
                 li

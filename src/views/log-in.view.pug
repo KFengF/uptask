@@ -15,11 +15,11 @@ html(lang="en")
             each error in messages[errorType]
               p(class=`alerta ${errorType}`)= error
 
-      form(method='POST' action='/log-in' class='caja caja-login')
+      form(method='POST' action='/log-in' class='caja-login')
         .campo
           label(for='email') Email:
           input(
-            type='text'
+            type='email'
             name='email'
             id='email'
             placeholder='Enter your email here'
@@ -34,6 +34,8 @@ html(lang="en")
             placeholder='Enter your password here'
             require
           )
-        .flex
-          a(href='/sign-up' class='anchor') Don't have an account yet?
+        .campo.enviar
           input(type='submit' value='Log in' class='boton')
+        .campo.acciones
+          a(href='/sign-up' class='anchor') Don't have an account yet?
+          a(href='/password' class='anchor') Forgot your password?

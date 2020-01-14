@@ -29,7 +29,7 @@ module.exports = () => {
       .isEmpty()
       .trim()
       .escape(),
-    projectsController.updateNew
+    projectsController.updateProject
   );
 
   router.get("/projects/:url", projectsController.project);
@@ -63,6 +63,8 @@ module.exports = () => {
   router.post("/log-in", authController.authenticateUser);
 
   router.get("/log-out", authController.logOut);
+
+  router.get("password", usersController.password);
 
   return router;
 };

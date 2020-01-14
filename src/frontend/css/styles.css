@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 *,
@@ -28,6 +29,7 @@ body {
 }
 
 .contenedor-formulario h1 {
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
   text-align: center;
   color: white;
   margin: 0 0 0.67em 0;
@@ -35,6 +37,7 @@ body {
 
 .contenedor-formulario h1 span {
   font-weight: 400;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
   font-size: 1.2rem;
 }
 
@@ -51,9 +54,7 @@ body {
   max-width: 650px;
   width: 90%;
   margin: 0 auto;
-  min-height: 300px;
   -webkit-box-shadow: 0px 25px 35px -17px rgba(0, 0, 0, 0.56);
-  -moz-box-shadow: 0px 25px 35px -17px rgba(0, 0, 0, 0.56);
   box-shadow: 0px 25px 35px -17px rgba(0, 0, 0, 0.56);
   padding: 3rem;
 }
@@ -65,14 +66,14 @@ body {
 }
 
 .campo label {
-  flex: 0 0 100px;
+  flex: 0 0 80px;
   text-align: right;
   padding-right: 1rem;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.6);
+  font-size: 1.2rem;
 }
 
-.campo input[type="email"],
-.campo input[type="text"],
-.campo input[type="password"] {
+.campo input {
   height: 3rem;
   border: 0;
   flex: 1;
@@ -86,11 +87,6 @@ body {
   justify-content: space-between;
 }
 
-.campo a {
-  color: black;
-  text-decoration: none;
-}
-
 .enviar {
   justify-content: flex-end;
 }
@@ -99,11 +95,12 @@ body {
   background-color: #fdd835;
   text-align: center;
   transition: background-color 0.5s ease-in-out;
-  padding: 2rem;
+  padding: 2rem 1rem;
   text-transform: uppercase;
   border: none;
   font-weight: 900;
-  width: 250px;
+  width: 100%;
+  max-width: 250px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -136,10 +133,6 @@ body {
   background-color: rgb(189, 1, 1) !important;
 }
 
-.boton.transparente {
-  background-color: transparent;
-}
-
 /** Barra **/
 body.index {
   height: 100vh;
@@ -157,20 +150,31 @@ body.index {
 .barra h1 {
   color: white;
   margin: 0;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
   font-size: 1.4rem;
 }
 
-.barra a {
+.log-out {
   color: white;
   text-decoration: none;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  font-size: 1.2rem;
 }
 
 /*** sidebar**/
 .contenedor-proyectos {
-  height: 100%;
-  max-width: 300px;
+  min-height: calc(100vh - 60px);
+  width: 300px;
   background-color: #607d8b;
   padding-top: 1rem;
+  z-index: 10;
+}
+
+.contenedor-proyectos .log-out {
+  font-size: 1.8rem;
+  text-align: center;
+  border-bottom: 2px solid #455a64;
+  padding-bottom: 1rem;
 }
 
 .panel {
@@ -188,6 +192,7 @@ body.index {
   color: #fdd835;
   font-weight: 900;
   text-align: center;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
   font-size: 2rem;
   margin: 0;
 }
@@ -204,10 +209,14 @@ body.index {
   list-style: none;
   padding: 1.5rem 0 0 0;
   margin: 0;
+  height: calc(100vh - 60px - 18.8rem);
+  overflow-y: auto;
 }
 
 .lista-proyectos ul li {
-  margin-bottom: 1rem;
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #455a64;
 }
 
 .lista-proyectos ul li a:hover {
@@ -217,13 +226,13 @@ body.index {
 /** Contenido Principal */
 .contenedor {
   display: flex;
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
 }
 
 .contenido-principal {
+  position: relative;
   flex: 1;
-  padding: 1rem;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .contenido-principal h1,
@@ -345,7 +354,7 @@ body.index {
   transition: width 0.3s ease;
 }
 
-form.agregar-proyecto {
+.agregar-proyecto {
   max-width: 800px;
   width: 90%;
   background-color: #607d8b;
@@ -355,18 +364,18 @@ form.agregar-proyecto {
   transition: background-color 0.5s ease-in-out;
 }
 
-form.agregar-proyecto label,
-form.agregar-proyecto input {
+.agregar-proyecto label,
+.agregar-proyecto input {
   display: block;
 }
 
-form.agregar-proyecto label {
+.agregar-proyecto label {
   flex: 0 0 150px;
   text-align: right;
   padding-right: 1rem;
 }
 
-form.agregar-proyecto input[type="text"] {
+.agregar-proyecto input[type="text"] {
   width: 100%;
   height: 3rem;
   padding-left: 1rem;
@@ -376,20 +385,17 @@ form.agregar-proyecto input[type="text"] {
 }
 
 form input[type="submit"] {
-  margin-top: 1rem;
   text-align: center;
   display: block;
   padding: 1.5rem;
   color: black;
-  width: auto;
-  margin: 0;
+  margin: 1rem 0 0;
 }
 
 .contenedor-acciones {
   max-width: 800px;
   margin: 2rem auto 0 auto;
   width: 90%;
-
   display: flex;
   justify-content: space-between;
 }
@@ -433,4 +439,80 @@ form input[type="submit"] {
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+.background {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#stack {
+  font-size: 2rem;
+  background-color: #fdd835;
+  transition: background-color 0.2s;
+  border: 0;
+  border-radius: 5px;
+}
+
+#stack:hover {
+  background-color: rgb(219, 184, 29);
+}
+
+#stack:active {
+  transform: scale(0.9);
+}
+
+.for-mobile {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .for-desktop {
+    display: none;
+  }
+
+  .for-mobile {
+    display: block;
+  }
+}
+
+@media (max-width: 520px) {
+  html {
+    font-size: 14px;
+  }
+
+  .agregar-proyecto,
+  .agregar-tarea,
+  .caja-login {
+    padding: 1.2rem;
+    width: 96%;
+  }
+
+  .campo label {
+    flex: 0 0 15px;
+    text-shadow: none;
+  }
+
+  .campo input {
+    padding-left: 0.8rem;
+  }
+
+  .contenedor-proyectos {
+    width: 200px;
+  }
+}
+
+@media (max-width: 380px) {
+  html {
+    font-size: 12px;
+  }
+
+  .agregar-proyecto,
+  .agregar-tarea,
+  .caja-login {
+    padding: 0.8rem;
+  }
 }

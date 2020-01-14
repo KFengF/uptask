@@ -8,7 +8,9 @@ exports.authenticateUser = passport.authenticate("local", {
 });
 
 exports.isAuthenticated = (req, res, next) =>
-  req.isAuthenticated() || req._parsedUrl.path === "/log-in"
+  req.isAuthenticated() ||
+  req._parsedUrl.path === "/log-in" ||
+  req._parsedUrl.path === "/sign-up"
     ? next()
     : res.redirect("/log-in");
 

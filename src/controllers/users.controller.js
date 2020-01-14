@@ -49,3 +49,9 @@ exports.postSignUp = (req, res) => {
 
 exports.logIn = (req, res) =>
   res.render("log-in.view.pug", { pageTitle: "Log in" });
+
+exports.password = (req, res) => {
+  res.render("password.view.pug", {
+    pageTitle: "Reset password"
+  });
+};

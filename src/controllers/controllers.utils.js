@@ -1,14 +1,16 @@
 const ProjectsPromise = require("../models/projects.model");
 const TasksPromise = require("../models/tasks.model");
 
-exports.ProjectsFindAll = () =>
-  ProjectsPromise.then(Projects => Projects.findAll());
+exports.ProjectsFindAll = where =>
+  ProjectsPromise.then(Projects => Projects.findAll(where));
 
 exports.ProjectsFindAllAndOne = async where => {
   const Projects = await ProjectsPromise;
-  const projectsPromise = Projects.findAll();
+  const projectsPromise = Projects.findAll({
+    where: { userId: where.userId }
+  });
   const projectPromise = Projects.findOne({
-    where
+    where: { url: where.url }
   });
   const [projects, project] = await Promise.all([
     projectsPromise,
@@ -19,7 +21,7 @@ exports.ProjectsFindAllAndOne = async where => {
 };
 
 exports.TasksFindAll = where =>
-  TasksPromise.then(Tasks => Tasks.findAll({ where }));
+  TasksPromise.then(Tasks => Tasks.findAll(where));
 
 exports.TaskFindOne = where =>
-  TasksPromise.then(Tasks => Tasks.findOne({ where }));
+  TasksPromise.then(Tasks => Tasks.findOne(where));

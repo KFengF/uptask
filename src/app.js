@@ -60,6 +60,7 @@ app.use(passport.session());
 app.use((req, res, next) => {
   res.locals.vardump = utils.vardump; //poniendo variables en el view
   res.locals.messages = req.flash();
+  res.locals.user = req.user;
   next();
 });
 

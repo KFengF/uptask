@@ -15,11 +15,11 @@ html(lang="en")
             each error in messages[errorType]
               p(class=`alerta ${errorType}`)= error
 
-      form(method='POST' action='/sign-up' class='caja caja-login')
+      form(method='POST' action='/sign-up' class='caja-login')
         .campo
           label(for='email') Email:
           input(
-            type='text'
+            type='email'
             name='email'
             id='email'
             placeholder='Enter your email here'

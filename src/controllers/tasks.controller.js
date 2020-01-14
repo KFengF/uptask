@@ -9,6 +9,7 @@ exports.postTask = async (req, res) => {
     const { url } = req.params;
     const { task } = req.body;
     const { projects, project } = await utils.ProjectsFindAllAndOne({
+      userId: res.locals.user.id,
       url
     });
     const Tasks = await TasksPromise;
@@ -51,7 +52,7 @@ exports.postTask = async (req, res) => {
 exports.patchState = async (req, res) => {
   try {
     const { id } = req.params;
-    const task = await utils.TaskFindOne({ id });
+    const task = await utils.TaskFindOne({ where: { id } });
 
     task.state = !task.state;
 
@@ -66,10 +67,10 @@ exports.patchState = async (req, res) => {
 };
 
 exports.deleteTask = async (req, res) => {
-  const { id } = req.params;
-  const Tasks = await TasksPromise;
-
   try {
+    const { id } = req.params;
+    const Tasks = await TasksPromise;
+
     await Tasks.destroy({ where: { id } });
 
     res.status(204).send();

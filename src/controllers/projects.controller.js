@@ -5,7 +5,9 @@ const ProjectsPromise = require("../models/projects.model");
 
 exports.root = async (req, res, next) => {
   try {
-    const projects = await utils.ProjectsFindAll();
+    const projects = await utils.ProjectsFindAll({
+      where: { userId: res.locals.user.id }
+    });
 
     res.render("index.view.pug", { pageTitle: "Projects", projects });
     //Indica que pagina renderizar, y sus variables
@@ -18,7 +20,9 @@ exports.root = async (req, res, next) => {
 
 exports.new = async (req, res, next) => {
   try {
-    const projects = await utils.ProjectsFindAll();
+    const projects = await utils.ProjectsFindAll({
+      where: { userId: res.locals.user.id }
+    });
 
     res.render("new.view.pug", {
       pageTitle: "New Project",
@@ -35,7 +39,9 @@ exports.postNew = async (req, res) => {
   try {
     const errors = validationResult(req).errors;
     const Projects = await ProjectsPromise;
-    const projects = await Projects.findAll();
+    const projects = await Projects.findAll({
+      where: { userId: res.locals.user.id }
+    });
     const { name } = req.body;
 
     if (errors.length) {
@@ -45,7 +51,7 @@ exports.postNew = async (req, res) => {
         projects
       });
     } else {
-      await Projects.create({ name });
+      await Projects.create({ name, userId: res.locals.user.id });
 
       res.redirect("/");
     }
@@ -57,12 +63,13 @@ exports.postNew = async (req, res) => {
 exports.project = async (req, res, next) => {
   try {
     const { projects, project } = await utils.ProjectsFindAllAndOne({
+      userId: res.locals.user.id,
       url: req.params.url
     });
 
     if (project) {
       const tasks = await utils.TasksFindAll({
-        projectId: project.id
+        where: { projectId: project.id }
       });
 
       res.render("project.view.pug", {
@@ -82,6 +89,7 @@ exports.project = async (req, res, next) => {
 exports.projectEdit = async (req, res, next) => {
   try {
     const { projects, project } = await utils.ProjectsFindAllAndOne({
+      userId: res.locals.user.id,
       url: req.params.url
     });
 
@@ -97,10 +105,12 @@ exports.projectEdit = async (req, res, next) => {
   }
 };
 
-exports.updateNew = async (req, res) => {
+exports.updateProject = async (req, res) => {
   const errors = validationResult(req).errors;
   const Projects = await ProjectsPromise;
-  const projects = await Projects.findAll();
+  const projects = await Projects.findAll({
+    where: { userId: res.locals.user.id }
+  });
   const { name } = req.body;
 
   if (errors.length) {
