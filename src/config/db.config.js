@@ -10,10 +10,12 @@ const initializingDB = async () => {
       password: process.env.DB_PASSWORD
     });
 
-    await connection.query("CREATE DATABASE IF NOT EXISTS uptask_db");
+    await connection.query(
+      "CREATE DATABASE IF NOT EXISTS " + process.env.DB_NAME
+    );
 
     return await new Sequelize(
-      "uptask_db",
+      process.env.DB_NAME,
       process.env.DB_USERNAME,
       process.env.DB_PASSWORD,
       {

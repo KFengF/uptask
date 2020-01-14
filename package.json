@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "nodemon ./src/app.js",
     "watch": "webpack --w --mode development",
-    "start": "concurrently \"npm run dev\" \"npm run watch\""
+    "start": "concurrently \"npm run dev\" \"npm run watch\"",
+    "build": "concurrently \"node ./src/app.js\" \"webpack --mode production\""
   },
   "repository": {
     "type": "git",
