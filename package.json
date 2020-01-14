@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "project made with node.js",
   "private": true,
-  "engines": {
-    "node": "12.14.0",
-    "npm": "6.13.4"
-  },
   "scripts": {
     "dev": "nodemon ./src/app.js",
     "watch": "webpack --w --mode development",
