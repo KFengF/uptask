@@ -8,17 +8,16 @@
     "npm": "6.13.4"
   },
   "scripts": {
-    "dev": "nodemon ./src/app.js",
-    "watch": "npx webpack --w --mode development",
-    "start": "concurrently \"npm run dev\" \"npm run watch\"",
-    "build": "npx webpack --mode production && node ./src/app.js"
+    "dev": "concurrently \"npx nodemon ./src/app.js\" \"npx webpack --w --mode development\"",
+    "start": "node ./src/app.js",
+    "build": "npx webpack --mode production"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KFengF/uptask.git"
   },
   "author": "Kevin Feng",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/KFengF/uptask/issues"
   },
