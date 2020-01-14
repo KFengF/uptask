@@ -40,12 +40,22 @@ export const handleDeleteTask = event => {
         .delete(`${location.origin}/tasks/${taskId}`)
         .then(() => {
           tasksList.removeChild(taskSelected);
+
           Swal.fire(
             "Deleted",
             "Your task has been deleted",
             "success"
           );
+
           putProjectProcess();
+
+          if (!tasksList.childNodes.length) {
+            const emptySpan = document.createElement("span");
+
+            emptySpan.innerHTML = "There's no task in this project";
+
+            tasksList.appendChild(emptySpan);
+          }
         })
         .catch(() =>
           Swal.fire({

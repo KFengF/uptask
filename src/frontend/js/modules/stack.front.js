@@ -1,23 +1,23 @@
-const stack = document.getElementById("stack");
+export const handleStack = () => {
+  const navBar = document.querySelector(".contenedor-proyectos");
 
-if (stack)
-  stack.addEventListener("click", () => {
-    const navBar = document.querySelector(".contenedor-proyectos");
+  if (!navBar.style.display) {
     const main = document.querySelector(".contenido-principal");
 
-    if (!navBar.style.display) {
-      navBar.style.cssText = "display: unset; position: absolute";
-      const background = document.createElement("div");
-      background.classList.add("background");
-      console.log(background);
+    navBar.style.cssText = "display: unset; position: absolute";
 
-      main.insertBefore(background, main.firstChild);
-      console.log(main);
-    } else {
-      navBar.style.cssText = "";
+    const background = document.createElement("div");
 
-      document.querySelector(".background").remove();
-    }
-  });
+    background.classList.add("background");
+    background.setAttribute(
+      "onclick",
+      "customFunctions.handleStack()"
+    );
 
-export default stack;
+    main.insertBefore(background, main.firstChild);
+  } else {
+    navBar.style.cssText = "";
+
+    document.querySelector(".background").remove();
+  }
+};

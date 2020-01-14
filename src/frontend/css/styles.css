@@ -145,6 +145,8 @@ body.index {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  -webkit-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
 .barra h1 {

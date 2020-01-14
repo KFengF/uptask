@@ -3,11 +3,12 @@ import {
   handleTaskCheck,
   handleDeleteTask
 } from "./modules/tasks.front";
-import "./modules/stack.front";
+import { handleStack } from "./modules/stack.front";
 
 window.customFunctions = {
   handleTaskCheck,
-  handleDeleteTask
+  handleDeleteTask,
+  handleStack
 };
 
 document.addEventListener("DOMContentLoaded", () =>

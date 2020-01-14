@@ -4,7 +4,11 @@ html(lang="en")
     include partials/head.partial.pug
   body
     header.barra
-      button#stack.for-mobile &#9776;
+      button(
+        onclick='customFunctions.handleStack()'
+        class='for-mobile'
+        id='stack'
+      ) &#9776;
       .logotype
         img(
           src="/public/assets/logo-white.png" 
