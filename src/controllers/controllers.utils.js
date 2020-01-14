@@ -1,5 +1,5 @@
-const ProjectsPromise = require("../models/projects.model.js");
-const TasksPromise = require("../models/tasks.model.js");
+const ProjectsPromise = require("../models/projects.model");
+const TasksPromise = require("../models/tasks.model");
 
 exports.ProjectsFindAll = where =>
   ProjectsPromise.then(Projects => Projects.findAll(where));

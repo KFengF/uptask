@@ -1,4 +1,4 @@
-const Sequelize = require("Sequelize");
+const Sequelize = require("sequelize");
 const dbPromise = require("../config/db.config");
 const ProjectsPromise = require("./projects.model");
 
