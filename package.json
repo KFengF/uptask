@@ -8,7 +8,7 @@
     "npm": "6.13.4"
   },
   "scripts": {
-    "dev": "concurrently \"npx nodemon ./src/app.js\" \"npx webpack --w --mode development\"",
+    "dev": "concurrently \"npx nodemon -r dotenv/config ./src/app.js\" \"npx webpack --w --mode development\"",
     "start": "node ./src/app.js",
     "build": "npx webpack --mode production"
   },
